@@ -1,12 +1,22 @@
 #pragma once
+#include <fstream>
+#include <string>
+#include <vector>
+#include <iostream>
+#include <cmath>
+using namespace std;
+
 class DHEnpoint
 {
 private:
-	int pubK1;
-	int pubK2;
-	int privateKey;
+	int k_base;
+	int k_mod;
+	int sec;
+	int k_full;
 public:
-	DHEnpoint(int pubK1, int pupK2, int privateKey);
+	DHEnpoint(int sec, int k_base, int k_mod);
 	int generatePartialKey();
-	int generateFullKey(int rPartialKey);
+	void generateFullKey(const int& outsidePartialKey);
+	void encryptFile(const string& path);
+	string encryptString(const string& message);
 };
